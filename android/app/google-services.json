@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "674611013249",
+    "project_id": "salesiana-proyecto",
+    "storage_bucket": "salesiana-proyecto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674611013249:android:0a1d249a8eaeb5c3428f80",
+        "android_client_info": {
+          "package_name": "com.example.aplication_salesiana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674611013249-3dqtudkan3bvouuuvh2sa6t4rbn9comp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDsm1KJno8NFhB4uIcU973OgUX6bMHAyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674611013249-3dqtudkan3bvouuuvh2sa6t4rbn9comp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
