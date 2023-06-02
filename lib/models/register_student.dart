@@ -11,6 +11,7 @@ class ResgisterStudens {
   String docente;
   DateTime fecha;
   int nroEstudiantes;
+  int nroTotalEstudiantes;
   String nroAula;
   bool asistencia;
   String turno;
@@ -23,6 +24,7 @@ class ResgisterStudens {
     required this.docente,
     required this.fecha,
     required this.nroEstudiantes,
+    required this.nroTotalEstudiantes,
     required this.nroAula,
     required this.asistencia,
     required this.turno,
@@ -42,6 +44,7 @@ class ResgisterStudens {
         docente: json["docente"],
         fecha: json["fecha"]?.toDate(),
         nroEstudiantes: json["nro_estudiante"],
+        nroTotalEstudiantes: json["nro_total_estudiantes"],
         nroAula: json["nro_aula"],
         asistencia: json["asistencia"],
         turno: json["turno"],
@@ -55,6 +58,7 @@ class ResgisterStudens {
         "docente": docente,
         "fecha": fecha,
         "nro_estudiante": nroEstudiantes,
+        "nro_total_estudiantes": nroTotalEstudiantes,
         "nro_aula": nroAula,
         "asistencia": asistencia,
         "turno": turno,

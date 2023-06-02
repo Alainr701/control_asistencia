@@ -1,9 +1,19 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:aplication_salesiana/models/usuario.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 
 class AuthMethods {
   // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  final firestore.CollectionReference usuariosCollection =
+      firestore.FirebaseFirestore.instance.collection("usuarios");
+  //get email
+  Future<String> getUserEmail() async {
+    User currentUser = _auth.currentUser!;
+    return currentUser.email!;
+  }
 
   // get user details
   // Future<model.User> getUserDetails() async {
@@ -85,6 +95,21 @@ class AuthMethods {
       return err.toString();
     }
     return res;
+  }
+
+  Future<Usuario?> getUserDetails(String correo) async {
+    Usuario? usuario;
+    try {
+      final firestore.QuerySnapshot snapshot =
+          await usuariosCollection.where('correo', isEqualTo: correo).get();
+      usuario = snapshot.docs
+          .map((doc) => Usuario.fromJson(doc.data() as Map<String, dynamic>))
+          .toList()[0];
+      return usuario;
+    } catch (e) {
+      print(e);
+      return usuario;
+    }
   }
 
   Future<void> signOut() async {

@@ -1,6 +1,7 @@
-import 'package:aplication_salesiana/screens/generate_registro_screen.dart';
+import 'package:aplication_salesiana/screens/create_register_screen.dart';
 import 'package:aplication_salesiana/screens/perfil_screen.dart';
 import 'package:aplication_salesiana/screens/registro_screen.dart';
+import 'package:aplication_salesiana/screens/create_table_screen.dart';
 import 'package:aplication_salesiana/services/auth_methods.dart';
 import 'package:aplication_salesiana/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
@@ -59,10 +60,15 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => const GenerateRegistroScreen()));
+                      builder: (_) => const GenerateRegistroDateScreen()));
             }),
         const Divider(height: 20, thickness: 2, indent: 20, endIndent: 20),
-        CustomContainer(text: 'Actualizar Registro', onTap: () {}),
+        CustomContainer(
+            text: 'Crear Registro',
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const CreateTableScreen()));
+            }),
       ],
     );
   }

@@ -20,6 +20,8 @@ void main() async {
           projectId: "salesiana-proyecto",
           storageBucket: "salesiana-proyecto.appspot.com",
           messagingSenderId: "674611013249",
+          databaseURL:
+              'https://salesiana-proyecto-default-rtdb.firebaseio.com/',
           appId: "1:674611013249:web:260f701156c1c7ac428f80"),
     );
   } else {

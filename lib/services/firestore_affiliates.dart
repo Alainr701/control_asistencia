@@ -9,6 +9,9 @@ class FirestoreRegister {
   final firestore.CollectionReference affiliatesCollection =
       firestore.FirebaseFirestore.instance.collection("registro_alumnos");
 
+  final firestore.CollectionReference registerCollection =
+      firestore.FirebaseFirestore.instance.collection("registro_tablas");
+
   Future<List<ResgisterStudens>> getRegister(String searchText,
       String searchTextTurno, String searchTextPeriodo) async {
     // log("** Getting Affiliate in FirestoreAPI searched type: $searchType, text: $searchText, productsPerPage: $affilatePerPage");
@@ -76,7 +79,7 @@ class FirestoreRegister {
     }
   }
 
-  Future<bool> updateParticipant(ResgisterStudens scientificEvent) async {
+  Future<bool> updateRegister(ResgisterStudens scientificEvent) async {
     log("** Updating a ScientificEvent in FirestoreAPI");
     try {
       firestore.DocumentReference ref =
@@ -88,6 +91,78 @@ class FirestoreRegister {
     } catch (e) {
       log("** Error when upadting a ScientificEvent in FirestoreAPI : $e");
       return false;
+    }
+  }
+
+  //create table REGISTER student
+  Future<bool> createRegisterTable(ResgisterStudens register) async {
+    log("** Creating a ScientificEvent in FirestoreAPI");
+    print(register.id);
+    try {
+      firestore.DocumentReference ref = affiliatesCollection.doc(register.id);
+      Map<String, dynamic> group = register.toJson();
+      log(group.toString());
+      await ref.set(group);
+
+      return true;
+    } catch (e) {
+      log("** Error when creating a ScientificEvent in FirestoreAPI : $e");
+      return false;
+    }
+  }
+
+  //create table REGISTER student
+  Future<bool> createRegisterTableForPermanenty(
+      ResgisterStudens register) async {
+    log("** Creating a ScientificEvent in FirestoreAPI");
+    try {
+      firestore.DocumentReference ref =
+          await registerCollection.add(register.toJson());
+      register.id = ref.id;
+      await ref.set(register.toJson());
+      return true;
+    } catch (e) {
+      log("** Error when creating a ScientificEvent in FirestoreAPI : $e");
+      return false;
+    }
+  }
+
+  //update
+  Future<bool> updateRegisterTable(ResgisterStudens scientificEvent) async {
+    log("** Updating a ScientificEvent in FirestoreAPI");
+    try {
+      firestore.DocumentReference ref =
+          affiliatesCollection.doc(scientificEvent.id);
+      Map<String, dynamic> group = scientificEvent.toJson();
+      log(group.toString());
+      await ref.update(group);
+      return true;
+    } catch (e) {
+      log("** Error when upadting a ScientificEvent in FirestoreAPI : $e");
+      return false;
+    }
+  }
+
+  Future<List<ResgisterStudens>> getRegisterTable(String searchText,
+      String searchTextTurno, String searchTextPeriodo) async {
+    // log("** Getting Affiliate in FirestoreAPI searched type: $searchType, text: $searchText, productsPerPage: $affilatePerPage");
+    try {
+      List<ResgisterStudens> register = [];
+      final firestore.QuerySnapshot snapshot = await registerCollection
+          .where('carrera', isEqualTo: searchText)
+          .where('turno', isEqualTo: searchTextTurno)
+          .where('periodo', isEqualTo: searchTextPeriodo)
+          .get();
+      register = snapshot.docs
+          .map((doc) =>
+              ResgisterStudens.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
+      log("** Success getting **");
+      return register;
+    } catch (e) {
+      log("** Error when getting Affiliate in FirestoreAPI :  $e");
+      debugPrint("** Error when getting Affiliate in FirestoreAPI :  $e");
+      return [];
     }
   }
 }

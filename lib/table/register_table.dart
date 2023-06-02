@@ -9,7 +9,9 @@ import 'package:provider/provider.dart';
 
 class RegisterTable extends StatefulWidget {
   final List<ResgisterStudens> registerStudents;
-  const RegisterTable({super.key, required this.registerStudents});
+  final int? totalEstudiantes;
+  const RegisterTable(
+      {super.key, required this.registerStudents, this.totalEstudiantes});
 
   @override
   State<RegisterTable> createState() => _RegisterTableState();
@@ -89,7 +91,9 @@ class _RegisterTableState extends State<RegisterTable> {
           'paralelo': PlutoCell(value: regusterStudents.paralelo),
           'nro_aula': PlutoCell(value: regusterStudents.nroAula),
           'docente': PlutoCell(value: regusterStudents.docente),
-          'nro_estudiantes': PlutoCell(value: regusterStudents.nroEstudiantes),
+          'nro_estudiantes': PlutoCell(
+              value:
+                  widget.totalEstudiantes ?? regusterStudents.nroEstudiantes),
           'asistencia': PlutoCell(value: regusterStudents.asistencia),
 
           // 'egress_date': PlutoCell(
@@ -125,7 +129,7 @@ class _RegisterTableState extends State<RegisterTable> {
               registerStudent.asistencia =
                   !widget.registerStudents[rendererContext.rowIdx].asistencia;
               Provider.of<ResgisterStudensProvider>(context, listen: false)
-                  .updateRegisters(registerStudent);
+                  .updateRegister(registerStudent);
               setState(() {});
             },
             text: registerStudent.asistencia ? 'Activo' : 'Desactivo',

@@ -1,18 +1,20 @@
-import 'package:aplication_salesiana/screens/generate_register_screen.dart';
+import 'package:aplication_salesiana/screens/register_data_screen.dart';
 import 'package:aplication_salesiana/screens/save_register_screen.dart';
 import 'package:aplication_salesiana/widgets/custom_button.dart';
 import 'package:aplication_salesiana/widgets/string_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class GenerateRegistroScreen extends StatefulWidget {
-  const GenerateRegistroScreen({super.key});
+class GenerateRegistroDateScreen extends StatefulWidget {
+  const GenerateRegistroDateScreen({super.key});
 
   @override
-  State<GenerateRegistroScreen> createState() => _GenerateRegistroScreenState();
+  State<GenerateRegistroDateScreen> createState() =>
+      _GenerateRegistroDateScreenState();
 }
 
-class _GenerateRegistroScreenState extends State<GenerateRegistroScreen> {
+class _GenerateRegistroDateScreenState
+    extends State<GenerateRegistroDateScreen> {
   List<String> carreras = [
     'Psicomotricidad',
     'Ingeniería de Sistemas',
@@ -111,7 +113,7 @@ class _GenerateRegistroScreenState extends State<GenerateRegistroScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (_) => GeneratedReScreen(
+                        builder: (_) => RegisterDataScreen(
                               carrera: carrera,
                               periodo: periodo,
                               turno: turno,

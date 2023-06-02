@@ -8,10 +8,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 import 'dart:io';
 
-class GeneratedReScreen extends StatefulWidget {
-  const GeneratedReScreen(
+class RegisterDataScreen extends StatefulWidget {
+  const RegisterDataScreen(
       {super.key,
       required this.turno,
       required this.periodo,
@@ -24,10 +26,10 @@ class GeneratedReScreen extends StatefulWidget {
   final DateTime fecha;
 
   @override
-  State<GeneratedReScreen> createState() => _GeneratedReScreenState();
+  State<RegisterDataScreen> createState() => _RegisterDataScreenState();
 }
 
-class _GeneratedReScreenState extends State<GeneratedReScreen> {
+class _RegisterDataScreenState extends State<RegisterDataScreen> {
   late ResgisterStudensProvider resgisterStudensProvider;
   List<ResgisterStudens> resgisterStudens = [];
   @override
@@ -41,6 +43,7 @@ class _GeneratedReScreenState extends State<GeneratedReScreen> {
                   periodo: widget.periodo,
                   fecha: widget.fecha);
     });
+
     super.initState();
   }
 

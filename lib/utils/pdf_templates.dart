@@ -2,7 +2,8 @@ import 'package:aplication_salesiana/models/register_student.dart';
 import 'package:pdf/pdf.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/widgets.dart';
-import 'dart:html';
+import 'dart:html'; //for movil
+import 'dart:js' as js; //for movil
 import 'dart:io' as io;
 import 'dart:typed_data';
 
@@ -112,11 +113,11 @@ class PdfTemplates {
                   Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('JUAN JAVIER GUILLÉN',
+                        Text('',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: regularSize)),
-                        Text('RESPONSABLE DE AFILIACIÓN',
+                        Text('RESPONSABLE ',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: smallSize))
